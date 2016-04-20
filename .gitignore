@@ -1,0 +1,5 @@
+# ignore archiTA
+archiTA/
+
+pipeline/simulator/*.o
+pipeline/simulator/pipeline
