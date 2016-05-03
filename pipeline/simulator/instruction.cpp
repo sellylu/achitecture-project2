@@ -4,22 +4,21 @@
 
 #include "instruction.h"
 
-
 Instruction::Instruction(int in) {
     ori = in;
-    Decode();
+    //Decode();
 }
 
-void Instruction::Decode() {
+Instruction* Instruction::decode() {
 
-    operation = (ori >> 26) & 0x3f;
+    op = (ori >> 26) & 0x3f;
     rs = (ori >> 21) & 0x1f;
     rt = (ori >> 16) & 0x1f;
     rd = (ori >> 11) & 0x1f;
 
-    if(operation == R_FORMAT) {
+    if(op == R_FORMAT) {
         other = ori & 0x7ff;
-    } else if (operation == OP_J || operation == OP_JAL) {
+    } else if (op == OP_J || op == OP_JAL) {
         other = ori & 0x3ffffff;
     } else {
         other = ori & 0xffff;
@@ -27,6 +26,7 @@ void Instruction::Decode() {
             other |= 0xffff0000;
         }
     }
+    func = other & 0x3f;
 
-
+    return this;
 }

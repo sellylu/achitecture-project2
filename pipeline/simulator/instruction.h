@@ -44,19 +44,16 @@
 
 class Instruction {
 public:
-	
+
     Instruction(int);
-
-    void Decode();
-
+    Instruction* decode();
     int ori;
-    int operation;
+    int op;
     char rs, rt, rd;
     int other;
+    int func;
 
 };
-
-
 
 #endif //CPU_SIMULATOR_INSTRUCTION_H
 
